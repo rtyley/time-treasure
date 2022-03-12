@@ -39,11 +39,13 @@ The Treasure Safe contains treasure, but will only release it when a correct seq
 
 #### External interface exposed by Treasure Safe
 
-* Passphrase input: 4x4 keypad with light-up keys labelled with the 8 adjectives and 8 nouns. The KeyBow 2040 is pretty awesome for this.
+* Passphrase input: 4x4 keypad with light-up keys labelled with the 8 adjectives and 8 nouns. Should be positioned so that children can easily read the labels on the keys and enter passphrases. The [KeyBow 2040](https://shop.pimoroni.com/products/keybow-2040?variant=32399559589971)
+  is pretty awesome for this.
 * Progress indicator: 6 lights that start red, then incrementally turn green with the entry of each correct passphrase
 * A sealed door or drawer with a motorised opening mechanism that allows access to the treasure when enough correct passphrases have been entered.
 
+#### Construction of Treasure Safe
 
+The container and the mechanism mostly implemented in Lego. It must be possible to secure this to a tree branch so that the device can not be moved. It may be necessary to enclose the device in a partial case if Lego is too delicate/easy to disassemble.
 
-
-
+The Keypad should be mounted securely on the surface of the safe.
