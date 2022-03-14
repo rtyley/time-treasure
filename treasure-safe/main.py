@@ -4,12 +4,6 @@ from rp2 import PIO
 
 print("Hello, Pi Pico!")
 
-beginBitTransmissionInterruptNum=1
-
-beginBitTransmissionFlag = 1
-bitTransmissionStageCompleteFlag = 2
-
-
 @rp2.asm_pio(set_init=[PIO.OUT_LOW],sideset_init=[PIO.OUT_LOW])
 def beginBitTransmission():
     wait(1, irq, 1)
@@ -20,7 +14,8 @@ def beginBitTransmission():
     nop().side(0) [5]
     jmp(x_dec, "pulse_cycle")
 
-    set(x, 19) [6] # one less half-cycle loop (19 rather than 20) to incorporate the cost of the 'set' instruction
+    # one less half-cycle loop (19 rather than 20) to incorporate the cost of the 'set' instruction
+    set(x, 18) [2] # 4 less instruction-cycles to allow
     label("blank_cycle")
     jmp(x_dec, "blank_cycle") [6] # half-38kHz cycle lasts 7 instructions - 'jmp' is 1, other 6 are pause
     irq(2)
