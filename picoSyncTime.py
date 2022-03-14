@@ -26,7 +26,7 @@ else:
     print(timeCube)
     with serial.Serial(picoSerialPort) as s:
         # syncMSG = 'T'+str(int(1000*t.timestamp()))
-        syncMSG = 'T'+timeCube
+        syncMSG = 'T'+timeCube+'_'
         s.write(bytes(syncMSG, "ascii"))
     print( "Raspberry Pi Pico found at "+str(picoSerialPort) )
     print( "Time sync epoch USB MSG: "+syncMSG )
