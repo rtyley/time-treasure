@@ -49,3 +49,14 @@ The Treasure Safe contains treasure, but will only release it when a correct seq
 The container and the mechanism mostly implemented in Lego. It must be possible to secure this to a tree branch so that the device can not be moved. It may be necessary to enclose the device in a partial case if Lego is too delicate/easy to disassemble.
 
 The Keypad should be mounted securely on the surface of the safe.
+
+#### Electronic components
+
+* KeyBow 2040
+* Adafruit AW9523 GPIO Expander and LED Driver Breakout - STEMMA QT / Qwiic
+* Adafruit DS3231 Precision RTC - STEMMA QT
+* Flexible RGB LED Strip - DotStar - 6 LEDs -- assuming we can drive this from the GPIO expander.
+* LED - Infrared - 940nm
+* Transistor (to drive IR LED) - connected to GPIO 0, the TX pin?
+* Linear motion limit sensors
+* Lego power functions sensor(s!?), battery box, and motor(s?)
