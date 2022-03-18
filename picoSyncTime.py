@@ -4,20 +4,29 @@
 #
 from serial.tools import list_ports
 import serial, time
-from datetime import timezone
+from datetime import timezone, timedelta
 import datetime
 from time import gmtime
 
-picoPorts = list(list_ports.grep("2E8A:0005"))
+print(list_ports.comports())
+
+# VID:PID for different devices:
+# RPi Pico                  : 2E8A:0005
+# Pimoroni Pico LiPo (16MB) : 2E8A:1003
+# Keybow 2040               : 16D0:08C6
+
+picoPorts = list(list_ports.grep("16D0:08C6"))
 if not picoPorts:
     print("No Raspberry Pi Pico found")
 else:
     picoSerialPort = picoPorts[0].device
     originalTime = datetime.datetime.now(timezone.utc)
-    t = originalTime
-    millisToWaitForDeadline = (1000 - (int(t.microsecond/1000) % 1000))
-    t.replace(microsecond=0)
-    t += datetime.timedelta(seconds=1)
+    t = originalTime.replace(microsecond=0) + datetime.timedelta(seconds=1)
+    print(f'Time now is\t{str(originalTime)}')
+    print(f'Deadline is\t{str(t)}')
+    millisToWaitForDeadline = int((t - originalTime) / timedelta(milliseconds=1))
+
+    print(f'millisToWaitForDeadline is {millisToWaitForDeadline}')
 
     # year, month, day, hour, minute, second, wday
     print(gmtime())

@@ -148,7 +148,6 @@ class SingleOutputCommand:
 
 
 transmitter = LPFTransmitter(board.GP0)
-# transmitter.transmit(LPFMessage(0,0,0,0,0))
 controller = LPFController(transmitter)
 
 while True:
