@@ -53,7 +53,7 @@ The Keypad should be mounted securely on the surface of the safe.
 #### Electronic components
 
 * KeyBow 2040
-* Adafruit AW9523 GPIO Expander and LED Driver Breakout - STEMMA QT / Qwiic
+* Adafruit AW9523 GPIO Expander and LED Driver Breakout - STEMMA QT / Qwiic ([guide](https://learn.adafruit.com/adafruit-aw9523-gpio-expander-and-led-driver/python-circuitpython))
 * Adafruit DS3231 Precision RTC - STEMMA QT
 * Flexible RGB LED Strip - DotStar - 6 LEDs -- assuming we can drive this from the GPIO expander.
 * LED - Infrared - 940nm
