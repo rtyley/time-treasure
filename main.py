@@ -183,24 +183,23 @@ print(RTC().get_time())
 
 def readDeadlineAndTimeToDeadlineFromUSB():
     ch, buffer = '',''
+    ticks_ms_for_read_instant = ticks_ms()
     while stdin in select([stdin], [], [], 0)[0]:
         ch = stdin.read(1)
         buffer = buffer+ch
     if buffer:
         print("Received USB data!")
-        ticks_ms_for_read_instant = ticks_ms()
         for i in range(len(buffer)):
             if buffer[i] == 'T':
                 break
         buffer = buffer[i:]
         if buffer[:1] == 'T' and buffer[-1] == '_':
-            buffData = buffer[1:-2]
-            print("buffData:",end='');print(buffData)
+            buffData = buffer[1:-1]
             buffFields = [int(x) for x in buffData.split(',')]
-            print("buffFields:",end='');print(buffFields)
             deadLineFields = buffFields[:-1]
             deadLineFields.append(0)
             timeToDeadLine = buffFields[-1]
+            print("timeToDeadLine:",end='');print(timeToDeadLine)
             return deadLineFields, ticks_add(ticks_ms_for_read_instant, timeToDeadLine)
 
 led_onboard = Pin(25, Pin.OUT)
@@ -209,12 +208,18 @@ picoRTC = machine.RTC()
 lastSecondPrinted = picoRTC.datetime()[6]
 
 while True:
-    currentSecond = picoRTC.datetime()[6]
-    if currentSecond != lastSecondPrinted:
+    picoTime=picoRTC.datetime()
+    ds3231Time = RTC().get_time()
+    secondsFromPico = picoTime[6]
+    secondsFromDS3231Time = ds3231Time[5]
+    if secondsFromPico != lastSecondPrinted:
+        picoTime=picoRTC.datetime()
+        print('Pico   RTC :',end='');print(picoTime)
+        print('DS3231 RTC :',end='');print(ds3231Time)
+        print('Pico   seconds :',end='');print(secondsFromPico)
+        print('DS3231 seconds :',end='');print(secondsFromDS3231Time)
+        lastSecondPrinted = secondsFromPico
         led_onboard.toggle()
-        print('Pico   RTC :',end='');print(picoRTC.datetime())
-        print('DS3231 RTC :',end='');print(RTC().get_time())
-        lastSecondPrinted = currentSecond
 
     receivedTimeDataFromUsb = readDeadlineAndTimeToDeadlineFromUSB()
     if receivedTimeDataFromUsb:
@@ -225,4 +230,8 @@ while True:
             sleep_us(1000)  # *ticks_diff(deadline, time.ticks_ms())
         RTC().save_time(deadLineFields)
         picoRTC.datetime((year, month, day, wday, hour, minute, second, 0))
-        print("Saved time from USB: ",end='');print(deadLineFields)
+        print("Saved time from USB\t: ",end='');print(deadLineFields)
+        print("PICO RTC says\t:",end='');print(picoRTC.datetime())
+        print("DS3231 now says\t:",end='');print(RTC().get_time())
+
+
