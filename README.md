@@ -58,7 +58,9 @@ The Keypad should be mounted securely on the surface of the safe.
   ([guide](https://learn.adafruit.com/adafruit-aw9523-gpio-expander-and-led-driver/python-circuitpython), [CircuitPython](https://github.com/adafruit/Adafruit_CircuitPython_AW9523))
 * Adafruit DS3231 Precision RTC - STEMMA QT
   ([guide](https://learn.adafruit.com/adafruit-ds3231-precision-rtc-breakout/circuitpython), [CircuitPython](https://github.com/adafruit/Adafruit_CircuitPython_DS3231))
-* Flexible RGB LED Strip - DotStar - 6 LEDs -- assuming we can drive this from the GPIO expander.
+* Flexible RGB LED Strip - DotStar
+  ((guide)[https://learn.adafruit.com/circuitpython-essentials/circuitpython-dotstar], [CircuitPython](https://github.com/adafruit/Adafruit_CircuitPython_DotStar))
+  6 LEDs -- assuming we can drive this from the GPIO expander.
 * LED - Infrared - 940nm
 * Transistor (to drive IR LED) - connected to GPIO 0, the TX pin?
 * Linear motion limit sensors
