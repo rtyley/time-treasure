@@ -15,7 +15,7 @@ print(list_ports.comports())
 # Pimoroni Pico LiPo (16MB) : 2E8A:1003
 # Keybow 2040               : 16D0:08C6
 
-picoPorts = list(list_ports.grep("2E8A:0005"))
+picoPorts = list(list_ports.grep("16D0:08C6"))
 if not picoPorts:
     print("No Raspberry Pi Pico found")
 else:
