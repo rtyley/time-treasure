@@ -36,7 +36,7 @@ class TreasurePassphrases:
         self.salts = salts
 
     def passphraseFor(self, epochSeconds):
-        passphraseEpoch = epochSeconds // 1
+        passphraseEpoch = epochSeconds // 10
         # print(f'passphraseEpoch={passphraseEpoch}')
         saltIndex = passphraseEpoch % self.numSalts
         # print(f'saltIndex={saltIndex}')
