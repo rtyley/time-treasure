@@ -1,4 +1,4 @@
-# treasure-clock
+# Time Treasure
 
 ## Devices
 
